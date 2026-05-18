@@ -17,6 +17,44 @@ The entire app runs in the browser — there is no backend. iCite enables CORS f
   <br><em>About page (methodology and credits).</em>
 </p>
 
+## What does this do?
+
+A plain-language summary of the tool, suitable for newsletters, press notes, social posts, announcements, or anywhere a non-technical description is useful. Copy-pasteable; no bibliometric or web-development background assumed.
+
+### Tagline (one sentence)
+
+A free, private web tool that turns a list of PubMed papers into an instant publication-impact report — without sending the data anywhere.
+
+### Short summary (~50 words)
+
+Publication Impact Grader is a free web app that takes a spreadsheet of PubMed IDs and produces a one-page report on publication impact — field-normalized citation scores, publication-year trends, top journals, open-access rates, and most-cited papers — using authoritative data from the U.S. National Institutes of Health. The entire analysis runs inside the user's web browser, so publication lists never leave their computer.
+
+### Long summary (~150 words)
+
+Publication Impact Grader is a free, open-source web app that lets researchers, librarians, department leaders, and program officers analyze the impact of any set of biomedical publications in seconds. The user uploads a CSV containing a column of PubMed IDs; the tool retrieves bibliometric data through the NIH iCite API and renders an editorial-style dashboard featuring the Relative Citation Ratio (RCR) — a field-normalized measure of citation impact maintained by the NIH Office of Portfolio Analysis — alongside publication-year trends, top journals, open-access rates, and the most-cited papers in the set. Users can also download an augmented CSV for further analysis. Because the app runs entirely in the user's browser, no publication lists, institutional identifiers, or other data are ever transmitted to a server. The project is open source under the MIT license and free to use.
+
+### Key talking points
+
+- **Free and open source** (MIT license); no account, login, or registration required.
+- **Privacy-preserving by design.** The CSV is read locally and analysis happens in the browser. No publication lists or institutional data are stored on a server.
+- **Built on authoritative NIH data.** Uses the [iCite API](https://icite.od.nih.gov/api) from the NIH Office of Portfolio Analysis — the same source NIH itself uses for portfolio analysis. Open-access status comes from [Unpaywall](https://unpaywall.org/).
+- **Field-normalized impact.** Reports the Relative Citation Ratio (RCR), which adjusts for differences in citation rates across biomedical fields and across time — a fairer comparison than raw citation counts.
+- **One-page editorial dashboard.** Designed to be readable at a glance, not a wall of numbers.
+- **Works for portfolios of any size**, from a single investigator's CV to a multi-hundred-paper program review.
+
+### Who it's for
+
+- **Department chairs and research deans** preparing faculty or program summaries.
+- **Program officers and funders** reviewing a portfolio of supported publications.
+- **Librarians and research-impact specialists** supporting investigator profiles, biosketches, and tenure dossiers.
+- **Individual investigators** preparing progress reports, grant renewals, or CVs.
+- **Research-evaluation offices** doing routine portfolio assessment.
+
+### Contact
+
+Sean Davis — <seandavi@gmail.com>
+Source code: <https://github.com/seandavi/pubmed-grader>
+
 ## Quickstart
 
 ```bash
