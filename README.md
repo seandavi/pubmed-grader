@@ -84,8 +84,6 @@ Any CSV with a column of PubMed IDs. The PMID column name is auto-detected case-
 
 Deployed to [Netlify](https://www.netlify.com/). Build settings live in [`netlify.toml`](./netlify.toml); custom domain + CNAME are configured in the Netlify UI. `VITE_GA_MEASUREMENT_ID` is set as a Netlify environment variable for production builds.
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/seandavi/pubmed-grader)
-
 ## Architecture
 
 ```
