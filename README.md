@@ -68,13 +68,9 @@ just build     # static SPA in frontend/dist
 
 ## Configuration
 
-`.env` (gitignored) sets a single env var consumed at build time:
+`.env` (gitignored) sets env vars consumed at build time; see [`.env.example`](./.env.example).
 
-```
-VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX   # leave empty to disable analytics
-```
-
-In production, set the same variable under **Netlify → Site settings → Environment variables**. Vite reads it at build time, so a fresh deploy is required after changing it.
+Analytics: GA4 ID `G-KLLV1GCF4E` (consolidated "Sean Davis — web" property) is hard-coded in `frontend/src/lib/analytics.ts` and only loads on production hosts.
 
 ## CSV format
 
@@ -82,7 +78,7 @@ Any CSV with a column of PubMed IDs. The PMID column name is auto-detected case-
 
 ## Deployment
 
-Deployed to [Netlify](https://www.netlify.com/). Build settings live in [`netlify.toml`](./netlify.toml); custom domain + CNAME are configured in the Netlify UI. `VITE_GA_MEASUREMENT_ID` is set as a Netlify environment variable for production builds.
+Deployed to [Netlify](https://www.netlify.com/). Build settings live in [`netlify.toml`](./netlify.toml); custom domain + CNAME are configured in the Netlify UI.
 
 ## Architecture
 

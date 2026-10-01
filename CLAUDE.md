@@ -17,14 +17,14 @@ iCite enables CORS for browser origins, so no backend is required. **The entire 
 - **Charts:** `recharts`.
 - **Tests:** `vitest` + `@testing-library/react` + jsdom for unit; `@playwright/test` for e2e (boots its own `vite preview`).
 - **Deployment:** Netlify (config in `netlify.toml`; `_redirects`-style SPA fallback is inlined there). Custom domain + CNAME are configured in the Netlify UI.
-- **Analytics:** Google Analytics 4, loaded only when `VITE_GA_MEASUREMENT_ID` is set at build time. The `track()` helper in `src/lib/analytics.ts` is a no-op otherwise.
+- **Analytics:** Google Analytics 4, hard-coded ID `G-KLLV1GCF4E` with `content_group: 'pubmed-grader'`, loaded only on production hosts (not localhost, IPs, `*.netlify.app`, etc.). The `track()` helper in `src/lib/analytics.ts` is a no-op otherwise.
 
 ## Architecture (very short)
 
 - `src/lib/icite.ts` — async generator that batches PMIDs (default 200/call) and retries transient failures.
 - `src/lib/csv.ts` — papaparse-backed CSV parser + augmenter; renames colliding iCite columns with an `icite_` prefix so user data is preserved.
 - `src/lib/stats.ts` — pure functions that compute the dashboard summary (RCR mean/median/thresholds, RCR + year histograms, top journals, top-cited papers).
-- `src/lib/analytics.ts` — GA4 wrapper, gated on `VITE_GA_MEASUREMENT_ID`.
+- `src/lib/analytics.ts` — GA4 wrapper, gated on production hostname.
 - `src/hooks/useGrading.ts` — orchestrates parse → fetch → stats → Blob URL.
 - `src/pages/{Grader,About}.tsx` — the two routes.
 - `src/components/{Header,Footer,UploadPanel,ProgressPanel,Dashboard,StatCard,RuleHeading}.tsx`.
@@ -33,7 +33,7 @@ iCite enables CORS for browser origins, so no backend is required. **The entire 
 
 - **bun** for everything (`bun install`, `bun run dev`, `bun run test`, `bun run build`, `bun run e2e`).
 - `just` aggregates the common tasks (`just install`, `just dev`, `just test`, `just build`, `just preview`, `just e2e`, `just ci`).
-- `.env` (gitignored) for local dev; **Netlify environment variables** (set in the UI) for production. The only secret currently is `VITE_GA_MEASUREMENT_ID`.
+- `.env` (gitignored) for local dev; **Netlify environment variables** (set in the UI) for production.
 - Commit thoroughly and often; branch for substantial changes.
 
 ## Don't
