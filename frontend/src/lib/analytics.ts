@@ -1,9 +1,15 @@
 /**
- * Google Analytics 4 wrapper. Loads only when `VITE_GA_MEASUREMENT_ID` is set;
- * otherwise `track()` is a no-op (handy for local dev and self-hosting).
+ * Google Analytics 4 wrapper. Uses the consolidated "Sean Davis — web"
+ * property; loads only on production hosts, otherwise `track()` is a no-op.
  */
 
-const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
+const MEASUREMENT_ID = "G-KLLV1GCF4E";
+
+function isProductionHost(host: string): boolean {
+  if (host === "localhost" || host === "127.0.0.1" || host === "[::1]") return false;
+  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(host) || host.startsWith("[")) return false;
+  return !/\.(workers\.dev|netlify\.app|ts\.net)$/.test(host);
+}
 
 declare global {
   interface Window {
@@ -15,8 +21,8 @@ declare global {
 let enabled = false;
 
 export function initAnalytics(): void {
-  if (!MEASUREMENT_ID) return;
   if (typeof window === "undefined") return;
+  if (!isProductionHost(window.location.hostname)) return;
 
   // Mirror Google's canonical gtag snippet exactly: a plain `function` that
   // pushes the `arguments` object, NOT a rest-params arrow that pushes a
@@ -33,6 +39,7 @@ export function initAnalytics(): void {
   window.gtag("config", MEASUREMENT_ID, {
     anonymize_ip: true,
     send_page_view: true,
+    content_group: "pubmed-grader",
   });
 
   const script = document.createElement("script");
